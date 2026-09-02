@@ -15,9 +15,19 @@ load_dotenv()
 
 app = FastAPI()
 
+origins = [
+    "https://kadash-chi.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:9000",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # set specific origins in prod
+    allow_origins=origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
